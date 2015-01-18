@@ -20,14 +20,14 @@ Answer: 0.223
 Question 3
 In the mtcars data set, fit a linear regression model of weight (predictor) on mpg (outcome). Get a 95% confidence interval for the expected mpg at the average weight. What is the lower endpoint?
 
-Answer: -6.486308
+Answer: 18.99098
 
 x <- mtcars$wt
 y <- mtcars$mpg
 fit <- lm(y~x)
 summary(fit)$coefficients
-sumCoef<-summary(fit)$coefficients
-sumCoef[2,1]+c(-1,1)*qt(.975,df=fit$df)*sumCoef[2,2]
+newdata <- data.frame(x=mean(x))
+p <- predict(fit, newdata, interval=("confidence"))
 
 Question 4
 Refer to the previous question. Read the help file for mtcars. What is the weight coefficient interpreted as?
